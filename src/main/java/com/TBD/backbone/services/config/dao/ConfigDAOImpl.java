@@ -14,7 +14,7 @@ import com.TBD.core.util.central.CentralConfigProvider;
 
 public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 {
-	private static final String GET_CONFIGURATION_SP = "BackboneTier1.GetConfiguration";
+	private static final String GET_CONFIGURATION_SP = "Backbone.GetConfiguration";
 
 	private static final String NAME = "Name";
 	private static final String VALUE = "Value";
