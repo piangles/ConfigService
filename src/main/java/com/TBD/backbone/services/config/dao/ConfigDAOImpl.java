@@ -21,7 +21,7 @@ public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 
 	public ConfigDAOImpl() throws Exception
 	{
-		super.init(ResourceManager.getInstance().getRDBMSDataStore(new CentralConfigProvider("ConfigService")));
+		super.init(ResourceManager.getInstance().getRDBMSDataStore(new CentralConfigProvider("ConfigService", "ConfigService")));
 	}
 
 	@Override
