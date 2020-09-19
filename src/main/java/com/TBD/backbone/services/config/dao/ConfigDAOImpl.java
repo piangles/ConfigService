@@ -1,14 +1,8 @@
 package com.TBD.backbone.services.config.dao;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.TBD.backbone.services.config.Configuration;
 import com.TBD.core.dao.DAOException;
 import com.TBD.core.dao.rdbms.AbstractDAO;
-import com.TBD.core.dao.rdbms.IndividualResultSetProcessor;
-import com.TBD.core.dao.rdbms.StatementPreparer;
 import com.TBD.core.resources.ResourceManager;
 import com.TBD.core.util.central.CentralConfigProvider;
 
@@ -30,21 +24,10 @@ public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 		Configuration retConfig = null;
 		Configuration configuration = new Configuration();
 
-		super.executeSPQuery(GET_CONFIGURATION_SP, 1, new StatementPreparer()
-		{
-
-			@Override
-			public void prepare(CallableStatement call) throws SQLException
-			{
-				call.setString(1, componentId);
-			}
-		}, new IndividualResultSetProcessor()
-		{
-			@Override
-			public void process(ResultSet rs) throws SQLException
-			{
-				configuration.addNameValue(rs.getString(NAME), rs.getString(VALUE));
-			}
+		super.executeSPQueryProcessIndividual(GET_CONFIGURATION_SP, 1, (call) -> {
+			call.setString(1, componentId);
+		}, (rs) -> {
+			configuration.addNameValue(rs.getString(NAME), rs.getString(VALUE));
 		});
 
 		if (configuration != null && !configuration.getProperties().isEmpty())
