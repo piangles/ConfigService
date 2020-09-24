@@ -1,4 +1,4 @@
-package com.TBD.backbone.services.config.dao;
+package org.piangles.backbone.services.config.dao;
 
 import com.TBD.backbone.services.config.Configuration;
 import com.TBD.core.dao.DAOException;

@@ -1,4 +1,4 @@
-package com.TBD.backbone.services.config;
+package org.piangles.backbone.services.config;
 
 import com.TBD.core.email.EmailSupport;
 import com.TBD.core.services.Service;
