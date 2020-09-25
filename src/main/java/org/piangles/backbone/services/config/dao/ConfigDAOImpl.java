@@ -1,10 +1,10 @@
 package org.piangles.backbone.services.config.dao;
 
-import com.TBD.backbone.services.config.Configuration;
-import com.TBD.core.dao.DAOException;
-import com.TBD.core.dao.rdbms.AbstractDAO;
-import com.TBD.core.resources.ResourceManager;
-import com.TBD.core.util.central.CentralConfigProvider;
+import org.piangles.backbone.services.config.Configuration;
+import org.piangles.core.dao.DAOException;
+import org.piangles.core.dao.rdbms.AbstractDAO;
+import org.piangles.core.resources.ResourceManager;
+import org.piangles.core.util.central.CentralConfigProvider;
 
 public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 {

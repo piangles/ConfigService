@@ -1,7 +1,7 @@
 package org.piangles.backbone.services.config.dao;
 
-import com.TBD.backbone.services.config.Configuration;
-import com.TBD.core.dao.DAOException;
+import org.piangles.backbone.services.config.Configuration;
+import org.piangles.core.dao.DAOException;
 
 public interface ConfigDAO
 {

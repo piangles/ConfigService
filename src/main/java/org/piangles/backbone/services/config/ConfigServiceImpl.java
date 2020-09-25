@@ -3,10 +3,10 @@ package org.piangles.backbone.services.config;
 import org.piangles.backbone.services.config.dao.ConfigDAO;
 import org.piangles.backbone.services.config.dao.ConfigDAOImpl;
 
-import com.TBD.backbone.services.config.ConfigException;
-import com.TBD.backbone.services.config.Configuration;
-import com.TBD.core.dao.DAOException;
-import com.TBD.core.services.Context;
+import org.piangles.backbone.services.config.ConfigException;
+import org.piangles.backbone.services.config.Configuration;
+import org.piangles.core.dao.DAOException;
+import org.piangles.core.services.Context;
 
 public class ConfigServiceImpl
 {
