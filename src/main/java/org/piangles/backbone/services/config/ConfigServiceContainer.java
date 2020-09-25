@@ -1,10 +1,10 @@
-package com.TBD.backbone.services.config;
+package org.piangles.backbone.services.config;
 
-import com.TBD.core.email.EmailSupport;
-import com.TBD.core.services.Service;
-import com.TBD.core.services.remoting.AbstractContainer;
-import com.TBD.core.services.remoting.AuditableControllerServiceDelegate;
-import com.TBD.core.services.remoting.ContainerException;
+import org.piangles.core.email.EmailSupport;
+import org.piangles.core.services.Service;
+import org.piangles.core.services.remoting.AbstractContainer;
+import org.piangles.core.services.remoting.AuditableControllerServiceDelegate;
+import org.piangles.core.services.remoting.ContainerException;
 
 public class ConfigServiceContainer extends AbstractContainer
 {
