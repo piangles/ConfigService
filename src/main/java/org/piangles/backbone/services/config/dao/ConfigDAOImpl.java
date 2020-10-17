@@ -24,13 +24,14 @@ public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 		Configuration retConfig = null;
 		Configuration configuration = new Configuration();
 
-		super.executeSPQueryProcessIndividual(GET_CONFIGURATION_SP, 1, (call) -> {
+		super.executeSPQueryList(GET_CONFIGURATION_SP, 1, (call) -> {
 			call.setString(1, componentId);
 		}, (rs) -> {
 			configuration.addNameValue(rs.getString(NAME), rs.getString(VALUE));
+			return null; //Since we already are modifying the list in configuration here
 		});
 
-		if (configuration != null && !configuration.getProperties().isEmpty())
+		if (!configuration.getProperties().isEmpty())
 		{
 			retConfig = configuration;
 		}
