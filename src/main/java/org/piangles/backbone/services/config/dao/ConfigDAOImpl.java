@@ -26,7 +26,7 @@ public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 
 		super.executeSPQueryList(GET_CONFIGURATION_SP, 1, (call) -> {
 			call.setString(1, componentId);
-		}, (rs) -> {
+		}, (rs, call) -> {
 			configuration.addNameValue(rs.getString(NAME), rs.getString(VALUE));
 			return null; //Since we already are modifying the list in configuration here
 		});
