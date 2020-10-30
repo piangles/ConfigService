@@ -24,7 +24,7 @@ public class ConfigServiceContainer extends AbstractContainer
 
 	public ConfigServiceContainer()
 	{
-		super("ConfigService");
+		super(ConfigService.NAME);
 	}
 	
 	@Override
