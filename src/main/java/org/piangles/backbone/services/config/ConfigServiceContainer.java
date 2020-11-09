@@ -13,7 +13,7 @@ public class ConfigServiceContainer extends AbstractContainer
 		ConfigServiceContainer container = new ConfigServiceContainer();
 		try
 		{
-			container.performSteps();
+			container.performSteps(args);
 		}
 		catch (ContainerException e)
 		{

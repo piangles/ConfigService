@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAR_FILE=app-config.jar
+JAR_FILE=ConfigService.jar
 PROCESS_NAME=ConfigService
 
 function printUsage {
