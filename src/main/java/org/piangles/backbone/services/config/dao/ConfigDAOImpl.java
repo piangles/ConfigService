@@ -1,5 +1,6 @@
 package org.piangles.backbone.services.config.dao;
 
+import org.piangles.backbone.services.config.ConfigService;
 import org.piangles.backbone.services.config.Configuration;
 import org.piangles.core.dao.DAOException;
 import org.piangles.core.dao.rdbms.AbstractDAO;
@@ -15,7 +16,7 @@ public class ConfigDAOImpl extends AbstractDAO implements ConfigDAO
 
 	public ConfigDAOImpl() throws Exception
 	{
-		super.init(ResourceManager.getInstance().getRDBMSDataStore(new CentralConfigProvider("ConfigService", "ConfigService")));
+		super.init(ResourceManager.getInstance().getRDBMSDataStore(new CentralConfigProvider(ConfigService.NAME, ConfigService.NAME)));
 	}
 
 	@Override
