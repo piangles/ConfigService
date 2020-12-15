@@ -2,11 +2,8 @@ package org.piangles.backbone.services.config;
 
 import org.piangles.backbone.services.config.dao.ConfigDAO;
 import org.piangles.backbone.services.config.dao.ConfigDAOImpl;
-
-import org.piangles.backbone.services.config.ConfigException;
-import org.piangles.backbone.services.config.Configuration;
 import org.piangles.core.dao.DAOException;
-import org.piangles.core.services.Context;
+import org.piangles.core.services.AuditDetails;
 
 public class ConfigServiceImpl
 {
@@ -17,7 +14,7 @@ public class ConfigServiceImpl
 		configDAO = new ConfigDAOImpl();
 	}
 
-	public Configuration getConfiguration(Context context, String componentId) throws ConfigException
+	public Configuration getConfiguration(AuditDetails details, String componentId) throws ConfigException
 	{
 		Configuration configuration = null;
 		try
