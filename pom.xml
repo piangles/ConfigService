@@ -22,13 +22,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.piangles.backbone.services</groupId>
-			<artifactId>BackBoneServices</artifactId>
-			<version>0.2</version>
+			<artifactId>BackboneServices</artifactId>
+			<version>0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.piangles.backbone.services</groupId>
-			<artifactId>BackBoneServicesLocator</artifactId>
-			<version>0.3</version>
+			<artifactId>BackboneServicesLocator</artifactId>
+			<version>0.9</version>
 		</dependency>
 
 		<dependency>
