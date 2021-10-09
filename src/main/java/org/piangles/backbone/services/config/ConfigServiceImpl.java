@@ -23,6 +23,7 @@ import org.piangles.backbone.services.config.dao.ConfigDAO;
 import org.piangles.backbone.services.config.dao.ConfigDAOImpl;
 import org.piangles.core.dao.DAOException;
 import org.piangles.core.services.AuditDetails;
+import org.piangles.core.util.Logger;
 
 public class ConfigServiceImpl
 {
@@ -47,7 +48,9 @@ public class ConfigServiceImpl
 		}
 		catch (DAOException e)
 		{
-			throw new ConfigException(e);
+			String message = "Unable to getConfiguration for ComponentId: " + componentId;
+			Logger.getInstance().error(message + ". Reason: " + e.getMessage(), e);
+			throw new ConfigException(message);
 		}
 
 		if (configuration == null)
