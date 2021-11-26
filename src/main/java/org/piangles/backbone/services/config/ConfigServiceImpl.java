@@ -19,39 +19,27 @@
  
 package org.piangles.backbone.services.config;
 
-import org.piangles.backbone.services.config.dao.ConfigDAO;
-import org.piangles.backbone.services.config.dao.ConfigDAOImpl;
-import org.piangles.core.dao.DAOException;
 import org.piangles.core.services.AuditDetails;
-import org.piangles.core.util.Logger;
 
 public class ConfigServiceImpl
 {
-	private ConfigDAO configDAO = null;
+	private ConfigSource configSource = null;
 
 	public ConfigServiceImpl() throws Exception
 	{
-		configDAO = new ConfigDAOImpl();
+		configSource = new AWSParamStoreConfigSource();
 	}
 
 	public Configuration getConfiguration(AuditDetails details, String componentId) throws ConfigException
 	{
 		Configuration configuration = null;
-		try
-		{
-			/**
-			 * TODO We should record audit for configuration.
-			 * configDAO.recordAudit(context);
-			 * 
-			 */
-			configuration = configDAO.retrieveConfiguration(componentId);
-		}
-		catch (DAOException e)
-		{
-			String message = "Unable to getConfiguration for ComponentId: " + componentId;
-			Logger.getInstance().error(message + ". Reason: " + e.getMessage(), e);
-			throw new ConfigException(message);
-		}
+		
+		/**
+		 * TODO We should record audit for configuration.
+		 * configDAO.recordAudit(context);
+		 * 
+		 */
+		configuration = configSource.retrieveConfiguration(componentId);
 
 		if (configuration == null)
 		{
