@@ -21,10 +21,8 @@ package org.piangles.backbone.services.config;
 import org.apache.commons.lang3.StringUtils;
 import org.piangles.backbone.services.Locator;
 import org.piangles.backbone.services.logging.LoggingService;
+import org.piangles.core.util.central.Environment;
 
-import com.amazonaws.regions.Regions;
-
-import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ssm.SsmClient;
 import software.amazon.awssdk.services.ssm.model.GetParametersByPathRequest;
 import software.amazon.awssdk.services.ssm.model.GetParametersByPathResponse;
@@ -32,38 +30,17 @@ import software.amazon.awssdk.services.ssm.model.Parameter;
 
 class AWSParamStoreConfigSource implements ConfigSource
 {
-	private static final String AWS_REGION = "aws.region";
-
 	private LoggingService logger = Locator.getInstance().getLoggingService();
-	
+
+	private Environment environment = null;
 	private SsmClient ssmClient = null;
 	
 	AWSParamStoreConfigSource() throws Exception
 	{
-		Region region = null;
-		String awsRegion = System.getenv(AWS_REGION);
-
-		if (awsRegion == null)
-		{
-			awsRegion = Regions.getCurrentRegion().getName();
-			logger.info("Defaulting to Region : " + awsRegion);
-		}
-		else
-		{
-			logger.info("Configured to Region : " + awsRegion);
-		}
-
-		if (StringUtils.isBlank(awsRegion))
-		{
-			String message = "AWS Region is either missing or cannot be dertermined.";
-			logger.fatal(message);
-			throw new Exception(message);
-		}
-		region = Region.of(awsRegion);
-
+		environment = new Environment(); 
 		try
 		{
-			ssmClient = SsmClient.builder().region(region).build();
+			ssmClient = SsmClient.builder().region(environment.getRegion()).build();
 		}
 		catch (Exception e)
 		{
@@ -82,7 +59,7 @@ class AWSParamStoreConfigSource implements ConfigSource
 
 		try
 		{
-			String pathPrefix = "/" + identifyEnvironment() + "/" + componentId;
+			String pathPrefix = "/" + environment.identifyEnvironment() + "/" + componentId;
 			
 			logger.info("ConfigService:Searching for pathPrefix : " + pathPrefix);
 
@@ -129,10 +106,5 @@ class AWSParamStoreConfigSource implements ConfigSource
 		}
 		
 		return configuration;
-	}
-	
-	private String identifyEnvironment()
-	{
-		return "dev";
 	}
 }
