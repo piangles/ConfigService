@@ -19,15 +19,39 @@
  
 package org.piangles.backbone.services.config;
 
+import java.util.Properties;
+
+import org.apache.commons.lang3.StringUtils;
 import org.piangles.core.services.AuditDetails;
+import org.piangles.core.util.central.CentralClient;
 
 public class ConfigServiceImpl
 {
+	private static final String CONFIG_SOURCE = "ConfigSource";
+	
 	private ConfigSource configSource = null;
 
 	public ConfigServiceImpl() throws Exception
 	{
-		configSource = new AWSParamStoreConfigSource();
+		Properties tier1Config = CentralClient.getInstance().tier1Config(ConfigService.NAME);
+		
+		String configSourceValue = tier1Config.getProperty(CONFIG_SOURCE);
+		if (StringUtils.isBlank(configSourceValue) || "AWS".equals(configSourceValue))
+		{
+			configSource = new AWSParamStoreConfigSource(); //Default
+		}
+		else if ("Database".equals(configSourceValue))
+		{
+			configSource = new DBBasedConfigSource();
+		}
+		else if ("File".equals(configSourceValue))
+		{
+			configSource = new FileBasedConfigSource();
+		}
+		else
+		{
+			throw new Exception("Invalid ConfigSource: " + configSourceValue);
+		}
 	}
 
 	public Configuration getConfiguration(AuditDetails details, String componentId) throws ConfigException
